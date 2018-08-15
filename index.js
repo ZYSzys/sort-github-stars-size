@@ -1,4 +1,4 @@
-const GitHub = require("gh.js");
+const GitHub = require('gh.js')
 
 /**
  * sortByStarredSize
@@ -11,8 +11,8 @@ const GitHub = require("gh.js");
  * @param {Function} callback The callback function.
  * @return {gh.js} The `gh.js` instance.
  */
-function sortByStarredSize(username, token, callback) {
-  if (typeof token === "function") {
+function sortByStarredSize (username, token, callback) {
+  if (typeof token === 'function') {
     callback = token
     token = undefined
   }
@@ -20,13 +20,13 @@ function sortByStarredSize(username, token, callback) {
   const gh = new GitHub({ token: token })
   gh.get(`users/${username}/starred`, { all: true }, (err, repos) => {
     if (err) { return callback(err) }
-    repos.sort(function(a, b) {
-      return a.size > b.size ? 1 : -1;
+    repos.sort(function (a, b) {
+      return a.size > b.size ? 1 : -1
     })
     callback(null, repos)
   })
 
-  return gh;
+  return gh
 }
 
 module.exports = sortByStarredSize

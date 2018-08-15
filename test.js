@@ -9,7 +9,7 @@ const username = 'ZYSzys'
 
 sortGhStarredSize(username, (err, repos) => {
   spinner.stop()
-  console.log(err || repos.map(function(c) {
+  console.log(err || repos.map(function (c) {
     return `${c.full_name} => ` + chalk.red(`${c.size}`) + `kb`
-  }).join("\n"))
+  }).join('\n'))
 })
