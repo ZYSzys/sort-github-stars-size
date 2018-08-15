@@ -34,17 +34,25 @@ yarn add sort-github-stars-size
 
 ## Usage
 
+### NodeJS
 ```js
-const countPersonalStars = require('.')
+const sortStarredBySize = require('.')
 
 // use your username, 'ZYSzys' is mine
-countPersonalStars('ZYSzys', (err, total) => {
-  console.log(err || total)
+sortStarredBySize('ZYSzys', (err, repos) => {
+  console.log(err || repos.map(function(c) {
+    return `${c.full_name} => ${c.size} kb`
+  }).join("\n"))
 });
 // =>
 // Just a number.
 ```
 
+### CLI
+```bash
+# use your username, 'ZYSzys' is mine
+sort-starred-by-size ZYSzys
+```
 ## License
 
 MIT.
