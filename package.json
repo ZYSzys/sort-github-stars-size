@@ -1,0 +1,38 @@
+{
+  "name": "sort-github-stars-size",
+  "version": "1.0.0",
+  "description": "Sort your personal starred repos by repo's size.",
+  "main": "index.js",
+  "bin": {
+    "sort-starred-by-size": "./bin/sort-starred-by-size"
+  },
+  "scripts": {
+    "test": "node test.js",
+    "cover": "istanbul cover bin/sort-starred-by-size ZYSzys && codecov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZYSzys/sort-github-stars-size.git"
+  },
+  "keywords": [
+    "sort",
+    "github",
+    "starred",
+    "stars"
+  ],
+  "author": "ZYSzys",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZYSzys/sort-github-stars-size/issues"
+  },
+  "homepage": "https://github.com/ZYSzys/sort-github-stars-size#readme",
+  "dependencies": {
+    "chalk": "2.4.1",
+    "gh.js": "3.0.12",
+    "ora": "3.0.0"
+  },
+  "devDependencies": {
+    "codecov": "3.0.4",
+    "istanbul": "0.4.5"
+  }
+}

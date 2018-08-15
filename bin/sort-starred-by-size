@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+const ora = require('ora')
+const chalk = require('chalk')
+const spinner = ora('Sorting...')
+spinner.start()
+
+if (!process.argv[2]) {
+  spinner.stop()
+  console.log(chalk.green('sort-starred-by-size ~ ' + require('../package').version))
+  console.log(chalk.gray('Sort your personal starred repos by size in command line.'))
+  console.log(chalk.cyan('  $ ') + 'sort-starred-by-size torvalds')
+  console.log(chalk.cyan('  $ ') + 'sort-starred-by-size ZYSzys')
+
+  return
+} else {
+  const username = process.argv.slice(2).join('')
+  const sort = require('..')
+  sort(username, (err, repos) => {
+    spinner.stop()
+    console.log(err || repos.map(function(c) {
+      return `${c.full_name} => ` + chalk.red(`${c.size}`) + `kb`
+    }).join("\n"))
+  })
+}
