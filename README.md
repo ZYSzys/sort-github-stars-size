@@ -36,7 +36,7 @@ yarn add sort-github-stars-size
 
 ### NodeJS
 ```js
-const sortStarredBySize = require('.')
+const sortStarredBySize = require('sort-github-stars-size')
 
 // use your username, 'ZYSzys' is mine
 sortStarredBySize('ZYSzys', (err, repos) => {
@@ -44,8 +44,7 @@ sortStarredBySize('ZYSzys', (err, repos) => {
     return `${c.full_name} => ${c.size} kb`
   }).join("\n"))
 });
-// =>
-// Just a number.
+// => sorted list of starred repos
 ```
 
 ### CLI
@@ -53,6 +52,13 @@ sortStarredBySize('ZYSzys', (err, repos) => {
 # use your username, 'ZYSzys' is mine
 sort-starred-by-size ZYSzys
 ```
+
+
+## Thanks
+
+- [gh.js](https://github.com/IonicaBizau/gh.js)
+
+
 ## License
 
-MIT.
+[MIT](https://github.com/ZYSzys/sort-github-stars-size/blob/master/LICENSE).
