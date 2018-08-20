@@ -1,15 +1,10 @@
-const ora = require('ora')
-const chalk = require('chalk')
-const sortGhStarredSize = require('.')
+import test from 'ava'
+import sortGhStarredSize from '.'
 
-const spinner = ora('Testing...')
-spinner.start()
+test.cb('sort torvalds starred repos', t => {
+  sortGhStarredSize('torvalds', t.end)
+})
 
-const username = 'ZYSzys'
-
-sortGhStarredSize(username, (err, repos) => {
-  spinner.stop()
-  console.log(err || repos.map(function (c) {
-    return `${c.full_name} => ` + chalk.red(`${c.size}`) + `kb`
-  }).join('\n'))
+test.cb('sort ZYSzys starred repos', t => {
+  sortGhStarredSize('ZYSzys', t.end)
 })

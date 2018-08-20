@@ -7,7 +7,7 @@
     "sort-starred-by-size": "./bin/sort-starred-by-size"
   },
   "scripts": {
-    "test": "node test.js",
+    "test": "nyc ava -v",
     "cover": "istanbul cover bin/sort-starred-by-size ZYSzys && codecov"
   },
   "repository": {
@@ -32,7 +32,8 @@
     "ora": "3.0.0"
   },
   "devDependencies": {
+    "ava": "0.25.0",
     "codecov": "3.0.4",
-    "istanbul": "0.4.5"
+    "nyc": "12.0.2"
   }
 }
