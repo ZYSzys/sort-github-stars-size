@@ -7,8 +7,7 @@
     "sort-starred-by-size": "./bin/sort-starred-by-size"
   },
   "scripts": {
-    "test": "nyc ava -v",
-    "cover": "istanbul cover bin/sort-starred-by-size ZYSzys && codecov"
+    "test": "nyc ava -v"
   },
   "repository": {
     "type": "git",
