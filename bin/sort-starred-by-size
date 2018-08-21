@@ -19,7 +19,7 @@ if (!process.argv[2]) {
   sort(username, (err, repos) => {
     spinner.stop()
     console.log(err || repos.map(function(c) {
-      return `${c.full_name} => ` + chalk.red(`${c.size}`) + `kb`
+      return `${c.html_url} => ` + chalk.red(`${c.size}`) + `kb`
     }).join("\n"))
   })
 }
