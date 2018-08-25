@@ -8,23 +8,22 @@ const program = require('commander')
 
 program
   .version(require('../package.json').version, '-v, --version')
-  .usage('<command> [options]')
+  .usage('<username> [language]')
   .description(require('../package.json').description)
 
 program.on('--help', function () {
   console.log('  Examples:');
   console.log('');
   console.log('    $ sort-starred-by-size torvalds');
-  console.log('    $ sort-starred-by-size ZYSzys');
+  console.log('    $ sort-starred-by-size ZYSzys js');
   console.log('');
 })
 
 program
-  .arguments('<command>')
-  .option('-lang, --language', 'sort by a specific language')
-  .action((cmd) => {
+  .arguments('<cmd> [lang]')
+  .action((cmd, lang) => {
     spinner.start()
-    require('..')(cmd, (err, repos) => {
+    require('..')(cmd, lang, (err, repos) => {
       spinner.stop()
       console.log(err || repos.map(function(c) {
         return `${c.html_url} => ` + chalk.red(`${c.size}`) + `kb`

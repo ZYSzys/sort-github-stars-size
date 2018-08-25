@@ -5,6 +5,6 @@ test.cb('sort torvalds starred repos', t => {
   sortGhStarredSize('torvalds', t.end)
 })
 
-test.cb('sort ZYSzys starred repos', t => {
-  sortGhStarredSize('ZYSzys', t.end)
+test.cb('sort ZYSzys starred js repos', t => {
+  sortGhStarredSize('ZYSzys', 'js', t.end)
 })
