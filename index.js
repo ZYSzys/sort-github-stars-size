@@ -11,7 +11,7 @@ const GitHub = require('gh.js')
  * @param {Function} callback The callback function.
  * @return {gh.js} The `gh.js` instance.
  */
-function sortByStarredSize(username, lang, callback) {
+function sortByStarredSize (username, lang, callback) {
   if (typeof lang === 'function') {
     callback = lang
     lang = undefined
@@ -22,7 +22,7 @@ function sortByStarredSize(username, lang, callback) {
     if (err) { return callback(err) }
 
     if (lang) { repos = repos.filter(x => x.language === standardLang(lang)) }
-    repos.sort(function(a, b) {
+    repos.sort(function (a, b) {
       return a.size > b.size ? 1 : -1
     })
     callback(null, repos)
@@ -31,7 +31,7 @@ function sortByStarredSize(username, lang, callback) {
   return gh
 }
 
-function standardLang(lang) {
+function standardLang (lang) {
   // js
   if (['js', 'javascript', 'JavaScript'].includes(lang)) {
     return 'JavaScript'
