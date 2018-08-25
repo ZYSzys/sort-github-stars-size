@@ -3,23 +3,42 @@
 const ora = require('ora')
 const chalk = require('chalk')
 const spinner = ora('Sorting...')
-spinner.start()
 
-if (!process.argv[2]) {
-  spinner.stop()
-  console.log(chalk.green('sort-starred-by-size ~ ' + require('../package').version))
-  console.log(chalk.gray('Sort your personal starred repos by size in command line.'))
-  console.log(chalk.cyan('  $ ') + 'sort-starred-by-size torvalds')
-  console.log(chalk.cyan('  $ ') + 'sort-starred-by-size ZYSzys')
+const program = require('commander')
 
-  return
-} else {
-  const username = process.argv.slice(2).join('')
-  const sort = require('..')
-  sort(username, (err, repos) => {
-    spinner.stop()
-    console.log(err || repos.map(function(c) {
-      return `${c.html_url} => ` + chalk.red(`${c.size}`) + `kb`
-    }).join("\n"))
+program
+  .version(require('../package.json').version, '-v, --version')
+  .usage('<username> [language]')
+  .description(require('../package.json').description)
+
+program.on('--help', function () {
+  console.log('  Examples:');
+  console.log('');
+  console.log('    $ sort-starred-by-size torvalds');
+  console.log('    $ sort-starred-by-size ZYSzys js');
+  console.log('');
+})
+
+program
+  .arguments('<cmd> [lang]')
+  .action((cmd, lang) => {
+    spinner.start()
+
+    const sort = require('..')
+    const callback = (err, repos) => {
+      spinner.stop()
+      console.log(err || repos.map(function(c) {
+        return `${c.html_url} => ` + chalk.red(`${c.size}`) + `kb`
+      }).join("\n"))
+    }
+
+    if (lang) {
+      sort(cmd, lang, callback)
+    } else {
+      sort(cmd, callback)
+    }
   })
-}
+
+program.parse(process.argv)
+
+if (!program.args.length) program.help();
