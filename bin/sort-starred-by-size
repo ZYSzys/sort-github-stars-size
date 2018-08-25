@@ -23,12 +23,20 @@ program
   .arguments('<cmd> [lang]')
   .action((cmd, lang) => {
     spinner.start()
-    require('..')(cmd, lang, (err, repos) => {
+
+    const sort = require('..')
+    const callback = (err, repos) => {
       spinner.stop()
       console.log(err || repos.map(function(c) {
         return `${c.html_url} => ` + chalk.red(`${c.size}`) + `kb`
       }).join("\n"))
-    })
+    }
+
+    if (lang) {
+      sort(cmd, lang, callback)
+    } else {
+      sort(cmd, callback)
+    }
   })
 
 program.parse(process.argv)
