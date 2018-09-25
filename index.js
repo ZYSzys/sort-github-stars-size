@@ -22,7 +22,7 @@ function sortByStarredSize (username, lang, callback) {
     if (err) { return callback(err) }
 
     if (lang) { repos = repos.filter(x => x.language === standardLang(lang)) }
-    repos.sort(function (a, b) {
+    repos.sort((a, b) => {
       return a.size > b.size ? 1 : -1
     })
     callback(null, repos)
@@ -31,7 +31,7 @@ function sortByStarredSize (username, lang, callback) {
   return gh
 }
 
-function standardLang (lang) {
+const standardLang = (lang) => {
   // js
   if (['js', 'javascript', 'JavaScript'].includes(lang)) {
     return 'JavaScript'
