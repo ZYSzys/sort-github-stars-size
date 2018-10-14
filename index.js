@@ -1,4 +1,4 @@
-const GitHub = require('gh.js')
+const GitHub = require('gh.js');
 
 /**
  * sortByStarredSize
@@ -11,61 +11,65 @@ const GitHub = require('gh.js')
  * @param {Function} callback The callback function.
  * @return {gh.js} The `gh.js` instance.
  */
-function sortByStarredSize (username, lang, callback) {
+function sortByStarredSize(username, lang, callback) {
   if (typeof lang === 'function') {
-    callback = lang
-    lang = undefined
+    callback = lang;
+    lang = undefined;
   }
 
-  const gh = new GitHub()
+  const gh = new GitHub();
   gh.get(`users/${username}/starred`, { all: true }, (err, repos) => {
-    if (err) { return callback(err) }
+    if (err) {
+      return callback(err);
+    }
 
-    if (lang) { repos = repos.filter(x => x.language === standardLang(lang)) }
+    if (lang) {
+      repos = repos.filter(x => x.language === standardLang(lang));
+    }
     repos.sort((a, b) => {
-      return a.size > b.size ? 1 : -1
-    })
-    callback(null, repos)
-  })
+      return a.size > b.size ? 1 : -1;
+    });
+    callback(null, repos);
+  });
 
-  return gh
+  return gh;
 }
 
-const standardLang = (lang) => {
+const standardLang = lang => {
   // js
   if (['js', 'javascript', 'JavaScript'].includes(lang)) {
-    return 'JavaScript'
+    return 'JavaScript';
   }
 
   // py
   if (['py', 'python', 'Python'].includes(lang)) {
-    return 'Python'
+    return 'Python';
   }
 
   // ts
   if (['ts', 'tsc', 'typescript', 'Typescript', 'TypeScript'].includes(lang)) {
-    return 'Typescript'
+    return 'Typescript';
   }
 
   // sh
   if (['sh', 'shell', 'Shell'].includes(lang)) {
-    return 'Shell'
+    return 'Shell';
   }
 
   // md
   if (['md', 'markdown', 'MarkDown', 'null'].includes(lang)) {
-    return null
+    return null;
   }
 
   // c
   if (['c', 'C'].includes(lang)) {
-    return 'C'
+    return 'C';
   }
 
   // c++
   if (['c++', 'C++'].includes(lang)) {
-    return 'C++'
+    return 'C++';
   }
-}
+};
 
-module.exports = sortByStarredSize
+module.exports = sortByStarredSize;
