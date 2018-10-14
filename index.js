@@ -48,7 +48,7 @@ const standardLang = lang => {
 
   // ts
   if (['ts', 'tsc', 'typescript', 'Typescript', 'TypeScript'].includes(lang)) {
-    return 'Typescript';
+    return 'TypeScript';
   }
 
   // sh
