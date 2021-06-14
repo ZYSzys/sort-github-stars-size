@@ -34,7 +34,7 @@
     "chalk": "2.4.1",
     "commander": "2.19.0",
     "gh.js": "3.0.12",
-    "ora": "3.0.0",
+    "ora": "5.4.1",
     "terminal-link": "1.1.0"
   },
   "devDependencies": {
